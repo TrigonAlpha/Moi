@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets | Portfolio Développeur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a12;
+            --darker-bg: #05050a;
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --accent: #ff7c7c;
+            --text: #f0f0f0;
+            --text-secondary: #a0a0b0;
+            --code-bg: #1a1a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(110, 69, 226, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(136, 211, 206, 0.1) 0%, transparent 20%);
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 18, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            transition: all 0.5s ease;
+            border-bottom: 1px solid rgba(136, 211, 206, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .project-hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--primary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Fira Code', monospace;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 0;
+        }
+        
+        .btn:hover {
+            color: var(--dark-bg);
+        }
+        
+        .btn-secondary {
+            border-color: var(--secondary);
+        }
+        
+        .btn-secondary:before {
+            background: var(--secondary);
+        }
+        
+        /* Project Showcase */
+        .project-showcase {
+            padding: 100px 0;
+            background: var(--darker-bg);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .project-card {
+            background: var(--dark-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(110, 69, 226, 0.3);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            background: var(--primary);
+            color: var(--text);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-tag {
+            padding: 5px 10px;
+            background: rgba(110, 69, 226, 0.2);
+            color: var(--secondary);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--secondary);
+        }
+        
+        /* Project Detail Modal */
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 10, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .project-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--darker-bg);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        
+        .modal-header {
+            margin-bottom: 30px;
+        }
+        
+        .modal-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .modal-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-body {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .modal-details {
+            margin-bottom: 30px;
+        }
+        
+        .modal-section {
+            margin-bottom: 30px;
+        }
+        
+        .modal-section h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .modal-tech {
+            background: var(--dark-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-tech h3 {
+            margin-bottom: 15px;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-text {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.5);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .animate.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .modal-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">&lt;Ange<span>Djaki</span>/&gt;</a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À Propos</a></li>
+                <li><a href="skills.html">Compétences</a></li>
+                <li><a href="projects.html" class="active">Projets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="project-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Mes Réalisations</h1>
+                <p class="hero-subtitle">Découvrez une sélection de mes projets les plus ambitieux</p>
+                <p>Chaque application représente des mois de travail, d'innovation et de résolution de problèmes complexes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Showcase -->
+    <section class="project-showcase">
+        <div class="container">
+            <h2>Projets Phares</h2>
+            <p>Explorez mes créations techniques et plongez dans les détails de chaque réalisation.</p>
+            
+            <div class="projects-grid">
+                <!-- Projet 1 -->
+                <div class="project-card animate" data-project="1">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="TravelMate Application">
+                        <div class="project-category">Mobile & Web</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">TravelMate</h3>
+                        <p class="project-desc">Application de localisation et suggestion de lieux pour touristes et locaux.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="#" class="project-link view-details" data-project="1"><i class="fas fa-eye"></i> Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-card animate" data-project="2">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="DécoLuxe Platform">
+                        <div class="project-category">E-commerce</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">DécoLuxe</h3>
+                        <p class="project-desc">Plateforme de vente de meubles et décoration d'intérieur.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="#" class="project-link view-details" data-project="2"><i class="fas fa-eye"></i> Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="project-card animate" data-project="3">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80" alt="ServiceLink Platform">
+                        <div class="project-category">Marketplace</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">ServiceLink</h3>
+                        <p class="project-desc">Plateforme de proposition de services entre particuliers.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="#" class="project-link view-details" data-project="3"><i class="fas fa-eye"></i> Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="project-card animate" data-project="4">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="LoveGames Platform">
+                        <div class="project-category">Social</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">LoveGames</h3>
+                        <p class="project-desc">Site de rencontre avec jeux interactifs pour couples.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="#" class="project-link view-details" data-project="4"><i class="fas fa-eye"></i> Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="project-card animate" data-project="5">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="FleetManager Software">
+                        <div class="project-category">Logiciel</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">FleetManager</h3>
+                        <p class="project-desc">Logiciel de gestion de transport avec géolocalisation.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Electron</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">GraphQL</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="#" class="project-link view-details" data-project="5"><i class="fas fa-eye"></i> Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <!-- Modal Projet 1 -->
+    <div class="project-modal" id="modal-1">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            
+            <div class="modal-header">
+                <h2 class="modal-title">TravelMate</h2>
+                <p class="modal-subtitle">Application de localisation et suggestion de lieux</p>
+                
+                <div class="modal-image">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="TravelMate Application">
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-details">
+                    <div class="modal-section">
+                        <h3>Description du Projet</h3>
+                        <p>TravelMate est une application mobile et web qui permet aux touristes et aux locaux de découvrir les meilleurs endroits autour d'eux. L'application propose des suggestions personnalisées d'hébergements, de divertissements, de restaurants et d'activités récréatives.</p>
+                        <p>L'objectif principal était de créer une expérience utilisateur intuitive qui s'adapte aux préférences de chaque utilisateur tout en fournissant des informations précises et à jour.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Fonctionnalités Principales</h3>
+                        <ul class="feature-list">
+                            <li>Géolocalisation en temps réel avec suggestions contextuelles</li>
+                            <li>Système de recommandation basé sur l'IA et les préférences utilisateur</li>
+                            <li>Reservation intégrée d'hébergements et d'activités</li>
+                            <li>Cartes interactives avec itinéraires personnalisés</li>
+                            <li>Revues et notations communautaires</li>
+                            <li>Mode hors-ligne avec synchronisation automatique</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Défis Techniques</h3>
+                        <p>L'un des principaux défis était l'optimisation de la consommation de batterie liée à la géolocalisation continue. Nous avons développé un algorithme intelligent qui adapte la fréquence de localisation en fonction du mouvement de l'utilisateur.</p>
+                        <p>La personnalisation des recommandations a nécessité la mise en place d'un système de machine learning capable de traiter des millions de points de données en temps réel.</p>
+                    </div>
+                </div>
+                
+                <div class="modal-sidebar">
+                    <div class="modal-tech">
+                        <h3>Technologies Utilisées</h3>
+                        <div class="tech-list">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">TensorFlow.js</span>
+                            <span class="tech-tag">Google Maps API</span>
+                            <span class="tech-tag">Firebase</span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-tech">
+                        <h3>Statistiques</h3>
+                        <ul class="feature-list">
+                            <li>+50 000 utilisateurs actifs</li>
+                            <li>4.8/5 sur les stores</li>
+                            <li>15 000 lieux référencés</li>
+                            <li>Temps de chargement < 2s</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Voir la démo</a>
+                <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> Code Source</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Projet 2 -->
+    <div class="project-modal" id="modal-2">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            
+            <div class="modal-header">
+                <h2 class="modal-title">DécoLuxe</h2>
+                <p class="modal-subtitle">Plateforme de vente de meubles et décoration d'intérieur</p>
+                
+                <div class="modal-image">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="DécoLuxe Platform">
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-details">
+                    <div class="modal-section">
+                        <h3>Description du Projet</h3>
+                        <p>DécoLuxe est une plateforme e-commerce haut de gamme spécialisée dans la vente de meubles et d'articles de décoration d'intérieur. Le site offre une expérience d'achat immersive avec visualisation 3D des produits et intégration de la réalité augmentée.</p>
+                        <p>L'objectif était de créer un environnement en ligne qui rivalise avec l'expérience en magasin physique, en permettant aux clients de visualiser les produits dans leur propre espace.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Fonctionnalités Principales</h3>
+                        <ul class="feature-list">
+                            <li>Visualiseur 3D et réalité augmentée</li>
+                            <li>Configurateur de produits personnalisables</li>
+                            <li>Système de recommandation basé sur le style d'intérieur</li>
+                            <li>Outils de planification d'espace</li>
+                            <li>Chat vidéo avec conseillers en décoration</li>
+                            <li>Gestion avancée des stocks et livraison</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Défis Techniques</h3>
+                        <p>L'intégration de la réalité augmentée a représenté un défi significatif, nécessitant une optimisation poussée pour fonctionner sur divers appareils mobiles. Nous avons développé un moteur de rendu 3D lightweight spécialement adapté pour le web.</p>
+                        <p>La gestion des produits personnalisables avec des millions de combinaisons possibles a requis une architecture de base de données sophistiquée et un système de caching avancé.</p>
+                    </div>
+                </div>
+                
+                <div class="modal-sidebar">
+                    <div class="modal-tech">
+                        <h3>Technologies Utilisées</h3>
+                        <div class="tech-list">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Three.js</span>
+                            <span class="tech-tag">WebGL</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-tech">
+                        <h3>Statistiques</h3>
+                        <ul class="feature-list">
+                            <li>+30% de conversion grâce à la RA</li>
+                            <li>1200 produits en catalogue</li>
+                            <li>95% de taux de satisfaction client</li>
+                            <li>Reduction de 40% des retours</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Voir la démo</a>
+                <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> Code Source</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Projet 3 -->
+    <div class="project-modal" id="modal-3">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            
+            <div class="modal-header">
+                <h2 class="modal-title">ServiceLink</h2>
+                <p class="modal-subtitle">Plateforme de proposition de services entre particuliers</p>
+                
+                <div class="modal-image">
+                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80" alt="ServiceLink Platform">
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-details">
+                    <div class="modal-section">
+                        <h3>Description du Projet</h3>
+                        <p>ServiceLink est une plateforme innovante qui met en relation des personnes proposant des services avec ceux qui en recherchent. La plateforme couvre un large éventail de services : massage, courses, livraison, babysitting, promenade d'animaux, etc.</p>
+                        <p>L'objectif était de créer un écosystème sécurisé et intuitif où chacun peut proposer ses compétences et trouver les services dont il a besoin.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Fonctionnalités Principales</h3>
+                        <ul class="feature-list">
+                            <li>Système de profils vérifiés et notation des prestataires</li>
+                            <li>Recherche géolocalisée avec filtres avancés</li>
+                            <li>Messagerie intégrée sécurisée</li>
+                            <li>Système de paiement intégré avec sécurisation des transactions</li>
+                            <li>Calendrier de disponibilité intelligent</li>
+                            <li>Gestion des contrats et assurances</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Défis Techniques</h3>
+                        <p>La mise en place d'un système de confiance et de sécurité a été le défi principal. Nous avons implémenté un processus de vérification d'identité à plusieurs niveaux et un algorithme de matching qui prend en compte la localisation, les compétences et les reviews.</p>
+                        <p>L'optimisation des temps de réponse pour la recherche géolocalisée en temps réel a nécessité l'utilisation de bases de données spatiales et d'indexation avancée.</p>
+                    </div>
+                </div>
+                
+                <div class="modal-sidebar">
+                    <div class="modal-tech">
+                        <h3>Technologies Utilisées</h3>
+                        <div class="tech-list">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Stripe</span>
+                            <span class="tech-tag">Google Maps API</span>
+                            <span class="tech-tag">Cloud Functions</span>
+                            <span class="tech-tag">Algolia</span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-tech">
+                        <h3>Statistiques</h3>
+                        <ul class="feature-list">
+                            <li>+15 000 prestataires inscrits</li>
+                            <li>45 000 services proposés</li>
+                            <li>4.7/5 satisfaction utilisateurs</li>
+                            <li>95% des transactions sécurisées</li>
+                        </ul>
+                                            </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Voir la démo</a>
+                <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> Code Source</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Projet 4 -->
+    <div class="project-modal" id="modal-4">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            
+            <div class="modal-header">
+                <h2 class="modal-title">LoveGames</h2>
+                <p class="modal-subtitle">Site de rencontre avec jeux interactifs pour couples</p>
+                
+                <div class="modal-image">
+                    <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="LoveGames Platform">
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-details">
+                    <div class="modal-section">
+                        <h3>Description du Projet</h3>
+                        <p>LoveGames est une plateforme de rencontre innovante qui intègre des jeux interactifs pour briser la glace et faciliter les connexions entre les utilisateurs. Contrairement aux applications de rencontre traditionnelles, LoveGames se concentre sur des interactions ludiques plutôt que sur de simples profils.</p>
+                        <p>L'objectif était de créer une expérience de rencontre moins superficielle et plus engageante, où les utilisateurs peuvent réellement interagir avant de décider de se rencontrer.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Fonctionnalités Principales</h3>
+                        <ul class="feature-list">
+                            <li>Jeux de questions-réponses pour briser la glace</li>
+                            <li>Quiz de compatibilité en temps réel</li>
+                            <li>Messagerie avec mini-jeux intégrés</li>
+                            <li>Système de matching algorithmique basé sur les préférences de jeu</li>
+                            <li>Événements virtuels et jeux de groupe</li>
+                            <li>Mode incognito et contrôles de confidentialité avancés</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Défis Techniques</h3>
+                        <p>Le principal défi était de créer une expérience temps réel fluide avec des milliers d'utilisateurs connectés simultanément. Nous avons dû optimiser notre utilisation de WebSockets et mettre en place un système de mise à l'échelle automatique.</p>
+                        <p>L'algorithme de matching basé sur les préférences de jeu a nécessité le développement d'un système de recommandation personnalisé qui analyse le style d'interaction des utilisateurs.</p>
+                    </div>
+                </div>
+                
+                <div class="modal-sidebar">
+                    <div class="modal-tech">
+                        <h3>Technologies Utilisées</h3>
+                        <div class="tech-list">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">AWS Elastic Beanstalk</span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-tech">
+                        <h3>Statistiques</h3>
+                        <ul class="feature-list">
+                            <li>+200 000 utilisateurs actifs mensuels</li>
+                            <li>65% de taux de rétention à 30 jours</li>
+                            <li>3.8/5 sur les stores d'applications</li>
+                            <li>Temps de réponse < 100ms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Voir la démo</a>
+                <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> Code Source</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Projet 5 -->
+    <div class="project-modal" id="modal-5">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            
+            <div class="modal-header">
+                <h2 class="modal-title">FleetManager</h2>
+                <p class="modal-subtitle">Logiciel de gestion de transport avec géolocalisation</p>
+                
+                <div class="modal-image">
+                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="FleetManager Software">
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-details">
+                    <div class="modal-section">
+                        <h3>Description du Projet</h3>
+                        <p>FleetManager est une solution complète de gestion de flotte automobile pour les entreprises de transport et de logistique. Le logiciel permet de suivre en temps réel la position des véhicules, d'optimiser les itinéraires, de gérer l'entretien et d'analyser les performances.</p>
+                        <p>L'objectif était de créer un outil tout-en-un qui simplifie la gestion complexe des parcs automobiles tout en réduisant les coûts opérationnels et en améliorant l'efficacité.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Fonctionnalités Principales</h3>
+                        <ul class="feature-list">
+                            <li>Suivi GPS en temps réel avec historique des trajets</li>
+                            <li>Optimisation automatique des itinéraires</li>
+                            <li>Gestion de la maintenance préventive et corrective</li>
+                            <li>Alertes en cas de comportement de conduite anormal</li>
+                            <li>Tableaux de bord analytiques avec indicateurs de performance</li>
+                            <li>Intégration avec les systèmes de facturation existants</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Défis Techniques</h3>
+                        <p>Le traitement de gros volumes de données de géolocalisation en temps réel a représenté un défi technique majeur. Nous avons développé un système de traitement de flux capable de gérer jusqu'à 10 000 points de données par seconde.</p>
+                        <p>L'optimisation des itinéraires en temps réel avec contraintes multiples (trafic, restrictions, préférences client) a nécessité l'implémentation d'algorithmes avancés et l'intégration de plusieurs API de trafic.</p>
+                    </div>
+                </div>
+                
+                <div class="modal-sidebar">
+                    <div class="modal-tech">
+                        <h3>Technologies Utilisées</h3>
+                        <div class="tech-list">
+                            <span class="tech-tag">Electron</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">GraphQL</span>
+                            <span class="tech-tag">PostGIS</span>
+                            <span class="tech-tag">Kafka</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-tech">
+                        <h3>Statistiques</h3>
+                        <ul class="feature-list">
+                            <li>15% de réduction des coûts de carburant</li>
+                            <li>20% d'augmentation de l'efficacité des trajets</li>
+                            <li>Gestion de +500 véhicules simultanément</li>
+                            <li>99.9% de temps de fonctionnement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Voir la démo</a>
+                <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> Code Source</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">&copy; 2023 VotreNom. Tous droits réservés.</p>
+            <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Animation au défilement
+        function checkScroll() {
+            const elements = document.querySelectorAll('.animate');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+        
+        // Navigation des modals
+        document.querySelectorAll('.view-details').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project');
+                const modal = document.getElementById(`modal-${projectId}`);
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Fermer les modals
+        document.querySelectorAll('.modal-close').forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.project-modal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Fermer en cliquant à l'extérieur du modal
+        document.querySelectorAll('.project-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Retour en haut de page
+        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
